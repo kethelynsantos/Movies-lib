@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1rem 6rem;
   background-color: #121212;
 }
 
@@ -24,8 +24,8 @@
 }
 
 #navbar form button {
-  background-color: #f7d354;
-  border: 2px solid #f7d354;
+  background-color: #00D9F5;
+  border: 2px solid #00D9F5;
   border-radius: 4px;
   color: #000;
   padding: 0.3rem;

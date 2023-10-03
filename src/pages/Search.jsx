@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// esse import que permite pegar a query string da url e utiliza-la
 import { useSearchParams } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
 
@@ -12,27 +11,47 @@ const Search = () => {
   const [searchParams] = useSearchParams();
 
   const [movies, setMovies] = useState([]);
-  const query = searchParams.get("q"); // dando um get em q eu vou receber o valor que o usuario buscou
+  const [loading, setLoading] = useState(true);
+  const query = searchParams.get("q");
 
   const getSearchedMovies = async (url) => {
-    const res = await fetch(url);
-    const data = await res.json();
-    setMovies(data.results);
+    try {
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error("Falha ao buscar os filmes");
+      }
+      const data = await res.json();
+      setMovies(data.results);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    const searchWithQueryURL = `${searchURL}?${apiKey}&query=${query}`; // o & é utilizado quando eu estou unindo mais um parametro para a query string. então eu passo a variavel query que é onde comtém o que vai ser buscado
-  }, [query]); // se nada for adicionado no array dependencias ele não ira reexecutar essa função aqui, vai apenas mudar os states, então passamos o query para que ele entenda que deve executar mais de uma vez caso receba esse valor dnv
+    if (query) {
+      const searchWithQueryURL = `${searchURL}?${apiKey}&query=${query}`;
+      getSearchedMovies(searchWithQueryURL);
+    }
+  }, [query]);
 
   return (
     <div className="container">
       <h2 className="title">
-        Resultados para: <span className="query-text">{query}</span>
+      Results for: <span className="query-text">{query}</span>
       </h2>
-      <div className="movies-container">
-        {movies.length > 0 &&
-          movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
-      </div>
+      {loading ? (
+        <p>Loading...</p>
+      ) : movies.length === 0 ? (
+        <p>No results found for "{query}"</p>
+      ) : (
+        <div className="movies-container">
+          {movies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

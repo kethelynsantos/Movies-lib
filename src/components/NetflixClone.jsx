@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCat } from "@fortawesome/free-solid-svg-icons";
 import { BiSearchAlt2 } from "react-icons/bi";
-import "./Home.css"; // Importe o arquivo CSS
+import "./NetflixClone.css"; // Importe o arquivo CSS
 
-function Home() {
+function NetflixClone() {
   const [search, setSearch] = useState("");
   // chamando uma função de redirecionamento para o componente
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ function Home() {
           <form onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Look for a movie"
+              placeholder="Busque um filme"
               // mudando meu estado do search baseado nos eventos que acontecem aqui
               onChange={(e) => setSearch(e.target.value)}
               // isso me permite manipular o valor do campo a partir do state
@@ -55,4 +55,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default NetflixClone;

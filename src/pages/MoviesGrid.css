@@ -1,12 +1,12 @@
 .container .title {
   color: #fff;
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: center;
-  margin: 2rem 0 1rem;
+  margin: 5rem 0 1rem;
 }
 
 .title .query-text {
-  color: #f7d354;
+  color: #00D9F5;
 }
 
 .movies-container {
@@ -43,12 +43,12 @@
 }
 
 .movies-container div svg {
-  color: #f7d354;
+  color: #00D9F5;
 }
 
 .movies-container div a {
-  background-color: #f7d354;
-  border: 2px solid #f7d354;
+  background-color: #00D9F5;
+  border: 2px solid #00D9F5;
   border-radius: 4px;
   color: #000;
   padding: 1rem 0.5rem;
@@ -58,5 +58,13 @@
 
 .movies-container div a:hover {
   background-color: transparent;
-  color: #f7d354;
+  color: #00D9F5;
+}
+
+.subtitle-underline {
+  width: 130px;
+  height: 2px;
+  background: #00D9F5;
+  border-radius: 2rem;
+  margin: 0 auto;
 }
